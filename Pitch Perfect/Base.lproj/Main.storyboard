@@ -16,15 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6O2-Pq-Jyw">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="microphone">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="RecordAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7rW-Re-Wdp"/>
-                                </connections>
-                            </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording audio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTq-Zn-Xiv">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -40,7 +31,20 @@
                                     <action selector="stopAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="JI4-DK-9cq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6O2-Pq-Jyw">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="microphone">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="150" y="249" width="100" height="100"/>
+                                </variation>
+                                <connections>
+                                    <action selector="RecordAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7rW-Re-Wdp"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="STY-ke-fdC" secondAttribute="centerX" constant="-2" id="0hv-th-jDU"/>
                             <constraint firstAttribute="centerX" secondItem="6O2-Pq-Jyw" secondAttribute="centerX" constant="-0.5" id="2jo-US-gWM"/>
@@ -51,9 +55,9 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="6O2-Pq-Jyw"/>
                                 <exclude reference="XTq-Zn-Xiv"/>
                                 <exclude reference="STY-ke-fdC"/>
+                                <exclude reference="6O2-Pq-Jyw"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="2jo-US-gWM"/>
@@ -66,9 +70,9 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="6O2-Pq-Jyw"/>
                                 <include reference="XTq-Zn-Xiv"/>
                                 <include reference="STY-ke-fdC"/>
+                                <include reference="6O2-Pq-Jyw"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="2jo-US-gWM"/>
@@ -81,7 +85,9 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="recordButtonOutlet" destination="6O2-Pq-Jyw" id="Nt7-16-wVg"/>
                         <outlet property="recordingOutlet" destination="XTq-Zn-Xiv" id="Fto-yT-f9b"/>
+                        <outlet property="stopButtonOutlet" destination="STY-ke-fdC" id="Xef-kn-mPM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

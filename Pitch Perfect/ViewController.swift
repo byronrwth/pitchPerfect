@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var recordingOutlet: UILabel!
+    @IBOutlet weak var stopButtonOutlet: UIButton!
+    @IBOutlet weak var recordButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +24,16 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        stopButtonOutlet.hidden=true
+        recordButtonOutlet.enabled = true
+    }
 
     @IBAction func RecordAudio(sender: UIButton) {
 
         println("I hit the button Record")
+        recordButtonOutlet.enabled = false
+        stopButtonOutlet.hidden=false
         recordingOutlet.hidden = false
         
         //TODO: Save audio
@@ -33,8 +41,6 @@ class ViewController: UIViewController {
 
     @IBAction func stopAudio(sender: AnyObject) {
         recordingOutlet.hidden=true
-        
-        //TODO: Hide label
     }
 }
 
