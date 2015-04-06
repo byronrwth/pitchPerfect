@@ -31,36 +31,52 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STY-ke-fdC">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="stopButton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="JI4-DK-9cq"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="STY-ke-fdC" secondAttribute="centerX" constant="-2" id="0hv-th-jDU"/>
                             <constraint firstAttribute="centerX" secondItem="6O2-Pq-Jyw" secondAttribute="centerX" constant="-0.5" id="2jo-US-gWM"/>
                             <constraint firstItem="XTq-Zn-Xiv" firstAttribute="top" secondItem="6O2-Pq-Jyw" secondAttribute="bottom" constant="20" id="8fy-qj-w7E"/>
                             <constraint firstAttribute="centerX" secondItem="XTq-Zn-Xiv" secondAttribute="centerX" id="Wv6-aB-SG7"/>
                             <constraint firstAttribute="centerY" secondItem="6O2-Pq-Jyw" secondAttribute="centerY" id="c94-Iq-lMY"/>
+                            <constraint firstItem="STY-ke-fdC" firstAttribute="top" secondItem="XTq-Zn-Xiv" secondAttribute="bottom" constant="40" id="etM-Hy-yI9"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="6O2-Pq-Jyw"/>
                                 <exclude reference="XTq-Zn-Xiv"/>
+                                <exclude reference="STY-ke-fdC"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="8fy-qj-w7E"/>
-                                <exclude reference="Wv6-aB-SG7"/>
                                 <exclude reference="2jo-US-gWM"/>
                                 <exclude reference="c94-Iq-lMY"/>
+                                <exclude reference="8fy-qj-w7E"/>
+                                <exclude reference="Wv6-aB-SG7"/>
+                                <exclude reference="0hv-th-jDU"/>
+                                <exclude reference="etM-Hy-yI9"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="6O2-Pq-Jyw"/>
                                 <include reference="XTq-Zn-Xiv"/>
+                                <include reference="STY-ke-fdC"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="8fy-qj-w7E"/>
-                                <include reference="Wv6-aB-SG7"/>
                                 <include reference="2jo-US-gWM"/>
                                 <include reference="c94-Iq-lMY"/>
+                                <include reference="8fy-qj-w7E"/>
+                                <include reference="Wv6-aB-SG7"/>
+                                <include reference="0hv-th-jDU"/>
+                                <include reference="etM-Hy-yI9"/>
                             </mask>
                         </variation>
                     </view>
@@ -74,5 +90,6 @@
     </scenes>
     <resources>
         <image name="microphone" width="100" height="100"/>
+        <image name="stopButton" width="50" height="50"/>
     </resources>
 </document>

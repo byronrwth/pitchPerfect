@@ -31,5 +31,10 @@ class ViewController: UIViewController {
         //TODO: Save audio
     }
 
+    @IBAction func stopAudio(sender: AnyObject) {
+        recordingOutlet.hidden=true
+        
+        //TODO: Hide label
+    }
 }
 
