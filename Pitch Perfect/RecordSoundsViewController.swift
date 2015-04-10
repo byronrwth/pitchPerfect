@@ -45,7 +45,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         
         let currentDateTime = NSDate()
         let formatter = NSDateFormatter()
-        formatter.dateFormat = "ddMMyyyy-HHmmss"
+        formatter.dateFormat = "ddMMyyyy-HHmmss" 
         let recordingName = formatter.stringFromDate(currentDateTime)+".wav"
         let pathArray = [dirPath, recordingName]
         let filePath = NSURL.fileURLWithPathComponents(pathArray)
