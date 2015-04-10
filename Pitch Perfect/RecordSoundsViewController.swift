@@ -82,10 +82,21 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
 
 
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        // CG: check the correspoding segue
+        if (segue.identifier == "stopRecordingSegue") {
+            let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as PlaySoundsViewController
+            let data = sender as RecordedAudio
+            playSoundsVC.recievedAudio = data
+            
+        }
+    }
 
     @IBAction func stopAudio(sender: UIButton) {
         recordingOutlet.hidden=true
-        //Inside func stopAudio(sender: UIButton)
+
         audioRecorder.stop()
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)
