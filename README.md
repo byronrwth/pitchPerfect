@@ -1,3 +1,6 @@
 # 
 
-This is app #1, from the udacity course on iOS
+This is app #1 from the Udacity iOS Developer Nanodegree
+
+https://www.udacity.com/course/nd003
+
