@@ -75,7 +75,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         }
         
         else {
-            println("Recording was not successful")
+            println("GC: Recording was not successful")
             recordButtonOutlet.enabled = true
             stopButtonOutlet.hidden = true
         }
