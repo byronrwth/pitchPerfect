@@ -146,14 +146,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.40000000596046448" green="1" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="tPT-c7-xEL" secondAttribute="centerY" constant="-241" id="H0e-Qa-rEL"/>
                             <constraint firstItem="DXx-3X-gf8" firstAttribute="top" secondItem="3bL-uS-kdE" secondAttribute="bottom" constant="57" id="Q6b-UW-JES">
                                 <variation key="widthClass=compact" constant="50"/>
                             </constraint>
                             <constraint firstItem="ETQ-ut-5P1" firstAttribute="top" secondItem="wkY-8g-6XW" secondAttribute="bottom" constant="50" id="S5X-f8-HMa"/>
-                            <constraint firstItem="DXx-3X-gf8" firstAttribute="top" secondItem="tPT-c7-xEL" secondAttribute="bottom" constant="34" id="ZMp-3e-rt3">
-                                <variation key="widthClass=compact" constant="50"/>
-                            </constraint>
                             <constraint firstItem="iCQ-th-UXo" firstAttribute="top" secondItem="wkY-8g-6XW" secondAttribute="bottom" constant="85" id="Zbt-fT-fU6">
                                 <variation key="widthClass=compact" constant="50"/>
                             </constraint>
@@ -172,13 +168,11 @@
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="Q6b-UW-JES"/>
-                                <exclude reference="ZMp-3e-rt3"/>
                                 <exclude reference="aHv-MO-ze6"/>
                                 <exclude reference="S5X-f8-HMa"/>
                                 <exclude reference="j4f-Um-1eg"/>
                                 <exclude reference="Zbt-fT-fU6"/>
                                 <exclude reference="tDT-bg-0q3"/>
-                                <exclude reference="H0e-Qa-rEL"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -190,13 +184,11 @@
                             </mask>
                             <mask key="constraints">
                                 <include reference="Q6b-UW-JES"/>
-                                <include reference="ZMp-3e-rt3"/>
                                 <include reference="aHv-MO-ze6"/>
                                 <include reference="S5X-f8-HMa"/>
                                 <include reference="j4f-Um-1eg"/>
                                 <include reference="Zbt-fT-fU6"/>
                                 <include reference="tDT-bg-0q3"/>
-                                <include reference="H0e-Qa-rEL"/>
                             </mask>
                         </variation>
                     </view>
