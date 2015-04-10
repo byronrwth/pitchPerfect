@@ -23,7 +23,7 @@ class PlaySoundsViewController: UIViewController {
             audioPlayer.enableRate = true
         }
         else {
-                println("the flePath is empty")
+                println("GC: The filePath is empty")
         }
                     
     }

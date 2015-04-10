@@ -8,6 +8,8 @@
 
 import Foundation
 
+// GC: This is the model class of the project
+
 class RecordedAudio: NSObject{
     var filePathUrl: NSURL!
     var title: String!

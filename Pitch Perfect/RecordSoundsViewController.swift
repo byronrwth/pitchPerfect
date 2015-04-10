@@ -34,7 +34,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
 
     @IBAction func RecordAudio(sender: UIButton) {
 
-        println("I hit the button Record")
+        println("GC: I hit the button Record")
         recordButtonOutlet.enabled = false
         stopButtonOutlet.hidden=false
         recordingOutlet.hidden = false
@@ -49,7 +49,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         let recordingName = formatter.stringFromDate(currentDateTime)+".wav"
         let pathArray = [dirPath, recordingName]
         let filePath = NSURL.fileURLWithPathComponents(pathArray)
-        println(filePath)
+        println("GC: File Path = \(filePath)")
         
         var session = AVAudioSession.sharedInstance()
         session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
