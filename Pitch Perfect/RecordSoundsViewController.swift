@@ -9,13 +9,13 @@
 import UIKit
 import AVFoundation
 
-class RecordSoundsViewController: UIViewController {
+class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
 
     @IBOutlet weak var recordingOutlet: UILabel!
     @IBOutlet weak var stopButtonOutlet: UIButton!
     @IBOutlet weak var recordButtonOutlet: UIButton!
     var audioRecorder:AVAudioRecorder!
-    
+    var recordedAudio:RecordedAudio!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,13 +54,36 @@ class RecordSoundsViewController: UIViewController {
         var session = AVAudioSession.sharedInstance()
         session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
         
+
         audioRecorder = AVAudioRecorder(URL: filePath, settings: nil, error: nil)
+        audioRecorder.delegate = self
         audioRecorder.meteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
     }
+    
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
 
-    @IBAction func stopAudio(sender: AnyObject) {
+        // TODO: Step 1. Save the recording audio
+        if (flag) {
+            recordedAudio = RecordedAudio()
+            recordedAudio.filePathUrl = recorder.url
+            recordedAudio.title = recorder.url.lastPathComponent
+
+            // TODO: Step 2. Pass it to the next scene
+            self.performSegueWithIdentifier("stopRecordingSegue", sender: recordedAudio)
+        }
+        
+        else {
+            println("Recording was not successful")
+            recordButtonOutlet.enabled = true
+            stopButtonOutlet.hidden = true
+        }
+
+
+    }
+
+    @IBAction func stopAudio(sender: UIButton) {
         recordingOutlet.hidden=true
         //Inside func stopAudio(sender: UIButton)
         audioRecorder.stop()
