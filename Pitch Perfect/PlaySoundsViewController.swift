@@ -13,6 +13,9 @@ class PlaySoundsViewController: UIViewController {
     
     var audioPlayer:AVAudioPlayer!
     var recievedAudio:RecordedAudio!
+
+    var audioEngine: AVAudioEngine!
+    var audioFile:AVAudioFile!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,11 @@ class PlaySoundsViewController: UIViewController {
         
         audioPlayer = AVAudioPlayer(contentsOfURL: recievedAudio.filePathUrl, error: nil)
         audioPlayer.enableRate = true
+
+        //var audioEngine: AVAudioEngine!
+
+        audioEngine = AVAudioEngine()
+        audioFile = AVAudioFile(forReading: recievedAudio.filePathUrl, error: nil)
         
     }
 
@@ -51,6 +59,40 @@ class PlaySoundsViewController: UIViewController {
         audioPlayer.play()
     }
     
+    func playAudioWithVariablePitch(pitch: Float){
+
+        // GC: Stop all audio
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        var changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = pitch
+        audioEngine.attachNode(changePitchEffect)
+        
+        // GC: Connect te nodes
+        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        
+        // GC: Start the audio player
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        audioEngine.startAndReturnError(nil)
+        
+        audioPlayerNode.play()
+        
+    }
+    
+    @IBAction func PlaySoundChipmunk(sender: UIButton) {
+        playAudioWithVariablePitch(1000)
+    }
+    
+    
+    @IBAction func playSoundDarthvader(sender: UIButton) {
+        playAudioWithVariablePitch(-1000)
+    }
     
     @IBAction func StopButton(sender: UIButton) {
         audioPlayer.stop()
