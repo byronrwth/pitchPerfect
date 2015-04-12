@@ -77,11 +77,70 @@ class PlaySoundsViewController: UIViewController {
         
         audioPlayerNode.play()
     }
+
+    func playAudioWithReverbEffect(wetDryMix: Float){
+        
+        // GC: Stopping audioPlayer and audioEngine before reproducing new sound
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        var changeEffectReverb = AVAudioUnitReverb()
+        changeEffectReverb.wetDryMix = wetDryMix
+
+        // GC: Connect te nodes
+        audioEngine.attachNode(changeEffectReverb)
+        audioEngine.connect(audioPlayerNode, to: changeEffectReverb, format: nil)
+        audioEngine.connect(changeEffectReverb, to: audioEngine.outputNode, format: nil)
+        
+        // GC: Start the audio player
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        audioEngine.startAndReturnError(nil)
+        
+        audioPlayerNode.play()
+    }
+
+    func playAudioWithEchoEffect() {
+        
+        // GC: Stopping audioPlayer and audioEngine before reproducing new sound
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        var changeEffectReverb = AVAudioUnitDelay()
+        changeEffectReverb.delayTime = 0.3
+
+        // GC: Connect te nodes
+        audioEngine.attachNode(changeEffectReverb)
+        audioEngine.connect(audioPlayerNode, to: changeEffectReverb, format: nil)
+        audioEngine.connect(changeEffectReverb, to: audioEngine.outputNode, format: nil)
+        
+        // GC: Start the audio player
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        audioEngine.startAndReturnError(nil)
+        
+        audioPlayerNode.play()
+    }
     
     @IBAction func PlaySoundChipmunk(sender: UIButton) {
         playAudioWithVariablePitch(1000)
     }
     
+    
+    @IBAction func PlayEchoSound(sender: UIButton) {
+        playAudioWithEchoEffect()
+    }
+    
+    
+    @IBAction func playReverbSound(sender: UIButton) {
+        playAudioWithReverbEffect(90)
+    }
     
     @IBAction func playSoundDarthvader(sender: UIButton) {
         playAudioWithVariablePitch(-1000)
