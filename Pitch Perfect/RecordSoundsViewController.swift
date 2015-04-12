@@ -40,7 +40,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         recordingOutlet.hidden = false
         
         //TODO: Save audio
-        //Inside func recordAudio(sender: UIButton)
+        //Inside func recordAudio(sender: UIButton) 
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         
         let currentDateTime = NSDate()
