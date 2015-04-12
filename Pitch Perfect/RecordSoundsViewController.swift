@@ -41,7 +41,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         
         //TODO: Save audio
         //Inside func recordAudio(sender: UIButton)
-        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         
         let currentDateTime = NSDate()
         let formatter = NSDateFormatter()
@@ -63,12 +63,10 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
     }
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
-
-        // TODO: Step 1. Save the recording audio
+        
         if (flag) {
-            recordedAudio = RecordedAudio()
-            recordedAudio.filePathUrl = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
+            // TODO: Step 1. Save the recording audio
+            recordedAudio = RecordedAudio(filePathUrl: recorder.url!, title: recorder.url.lastPathComponent!)
 
             // TODO: Step 2. Pass it to the next scene
             self.performSegueWithIdentifier("stopRecordingSegue", sender: recordedAudio)
@@ -87,10 +85,9 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         
         // CG: check the correspoding segue
         if (segue.identifier == "stopRecordingSegue") {
-            let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as PlaySoundsViewController
-            let data = sender as RecordedAudio
+            let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as! PlaySoundsViewController
+            let data = sender as! RecordedAudio
             playSoundsVC.recievedAudio = data
-            
         }
     }
 
