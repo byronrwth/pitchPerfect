@@ -19,21 +19,9 @@ class PlaySoundsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view. 
-        
-//        if var filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3"){
-//            var filepathURL = NSURL.fileURLWithPath(filePath)
-//            audioPlayer = AVAudioPlayer(contentsOfURL: filepathURL, error: nil)
-//            audioPlayer.enableRate = true
-//        }
-//        else {
-//                println("GC: The filePath is empty")
-//        }
         
         audioPlayer = AVAudioPlayer(contentsOfURL: recievedAudio.filePathUrl, error: nil)
         audioPlayer.enableRate = true
-
-        //var audioEngine: AVAudioEngine!
 
         audioEngine = AVAudioEngine()
         audioFile = AVAudioFile(forReading: recievedAudio.filePathUrl, error: nil)
@@ -45,23 +33,29 @@ class PlaySoundsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func PlaySoundSnail(sender: UIButton) {
-        audioPlayer.stop()
-        audioPlayer.rate = 0.5
-        audioPlayer.currentTime = 0.0
-        audioPlayer.play()
-    }
+    func playAudioWithVariableRate(rate: Float){
 
-    @IBAction func PlaySoundRabbit(sender: UIButton) {
+        // GC: Stopping audioPlayer and audioEngine before reproducing new sound
         audioPlayer.stop()
-        audioPlayer.rate = 2.0
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        audioPlayer.rate = rate
         audioPlayer.currentTime = 0.0
         audioPlayer.play()
     }
     
+    @IBAction func PlaySoundSnail(sender: UIButton) {
+        playAudioWithVariableRate(0.5)
+    }
+
+    @IBAction func PlaySoundRabbit(sender: UIButton) {
+        playAudioWithVariableRate(2.0)
+    }
+    
     func playAudioWithVariablePitch(pitch: Float){
 
-        // GC: Stop all audio
+        // GC: Stopping audioPlayer and audioEngine before reproducing new sound
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
@@ -82,7 +76,6 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.startAndReturnError(nil)
         
         audioPlayerNode.play()
-        
     }
     
     @IBAction func PlaySoundChipmunk(sender: UIButton) {
@@ -96,6 +89,8 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func StopButton(sender: UIButton) {
         audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
     }
 
     

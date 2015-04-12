@@ -37,12 +37,11 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         println("GC: I hit the button Record")
         recordButtonOutlet.enabled = false
         stopButtonOutlet.hidden=false
-        recordingOutlet.hidden = false
+        recordingOutlet.text = "Recording..."
         
-        //TODO: Save audio
-        //Inside func recordAudio(sender: UIButton) 
+        // CG: Saving audio
+        
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-        
         let currentDateTime = NSDate()
         let formatter = NSDateFormatter()
         formatter.dateFormat = "ddMMyyyy-HHmmss" 
@@ -53,7 +52,6 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         
         var session = AVAudioSession.sharedInstance()
         session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
-        
 
         audioRecorder = AVAudioRecorder(URL: filePath, settings: nil, error: nil)
         audioRecorder.delegate = self
@@ -65,10 +63,11 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         
         if (flag) {
-            // TODO: Step 1. Save the recording audio
+
+            // CG: Saving the recorded audio
             recordedAudio = RecordedAudio(filePathUrl: recorder.url!, title: recorder.url.lastPathComponent!)
 
-            // TODO: Step 2. Pass it to the next scene
+            // CG: Pass audio to the next scene
             self.performSegueWithIdentifier("stopRecordingSegue", sender: recordedAudio)
         }
         
@@ -92,8 +91,8 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
     }
 
     @IBAction func stopAudio(sender: UIButton) {
-        recordingOutlet.hidden=true
 
+        recordingOutlet.text = "Tap to Record"
         audioRecorder.stop()
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)
